@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button button, button2,button3;
     TextView textView;
-    int number;
+    int number,min,hour;
     Handler handler;
     Runnable runnable;
 
@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
         number = -1;
+        min = 0;
+        hour = 0;
         button2.setEnabled(false);
     }
 
@@ -36,7 +38,15 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 textView.setText("Time: " + number);
                 number++;
-                textView.setText("Time: " + number);
+                if (number==60){
+                    min++;
+                    number = number - 60;
+                }
+                if (min==60){
+                    hour++;
+                    min = min - 60;
+                }
+                textView.setText("Time: " + hour + " h "+ min + " m " + number+" s");
                 handler.postDelayed(runnable, 1000);
             }
         };
@@ -57,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void reset(View view){
         number = -1;
+        min = 0;
         button.setEnabled(true);
         button2.setEnabled(false);
         button3.setEnabled(false);
