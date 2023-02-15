@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     public void reset(View view){
         number = -1;
         min = 0;
+        hour = 0;
         button.setEnabled(true);
         button2.setEnabled(false);
         button3.setEnabled(false);
